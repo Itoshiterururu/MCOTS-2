@@ -1,0 +1,364 @@
+/* Replay Manager Styles */
+
+.replay-manager-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.replay-manager-modal {
+  background: #1e1e2e;
+  border-radius: 12px;
+  width: 900px;
+  max-width: 90%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.replay-manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: #2d2d3a;
+  border-bottom: 1px solid #3d3d4a;
+  border-radius: 12px 12px 0 0;
+}
+
+.replay-manager-header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+}
+
+.replay-manager-actions {
+  padding: 16px 24px;
+  background: #252535;
+  border-bottom: 1px solid #3d3d4a;
+  display: flex;
+  gap: 12px;
+}
+
+.btn-start-recording {
+  padding: 10px 20px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-start-recording:hover {
+  background: #da190b;
+  transform: translateY(-1px);
+}
+
+.btn-stop-recording {
+  padding: 10px 20px;
+  background: #616161;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.btn-stop-recording:hover {
+  background: #757575;
+  transform: translateY(-1px);
+}
+
+.btn-refresh {
+  padding: 10px 20px;
+  background: #3d3d4a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-refresh:hover {
+  background: #4d4d5a;
+}
+
+/* Start Dialog */
+.start-dialog {
+  padding: 20px 24px;
+  background: #252535;
+  border-bottom: 1px solid #3d3d4a;
+}
+
+.start-dialog h3 {
+  margin: 0 0 16px 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  color: #aaa;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: #1e1e2e;
+  border: 1px solid #3d3d4a;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4a9eff;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background: #4a9eff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #3a8eef;
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  background: #616161;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #757575;
+}
+
+/* Replay List */
+.replay-list-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.loading {
+  text-align: center;
+  color: #888;
+  padding: 40px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #888;
+  padding: 60px 20px;
+}
+
+.empty-state p:first-child {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.empty-state p:last-child {
+  font-size: 14px;
+}
+
+.replay-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.replay-item {
+  background: #2d2d3a;
+  border: 1px solid #3d3d4a;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s;
+}
+
+.replay-item:hover {
+  background: #353545;
+  border-color: #4a9eff;
+}
+
+.replay-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.recording-indicator {
+  animation: recordingPulse 1.5s infinite;
+}
+
+@keyframes recordingPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.replay-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.replay-info h3 {
+  margin: 0 0 4px 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.replay-info p {
+  margin: 0 0 8px 0;
+  color: #aaa;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.replay-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #888;
+}
+
+.replay-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-view {
+  padding: 8px 16px;
+  background: #4a9eff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-view:hover {
+  background: #3a8eef;
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  padding: 8px 12px;
+  background: #616161;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: #f44336;
+  transform: translateY(-1px);
+}
+
+.recording-status {
+  font-size: 13px;
+  color: #f44336;
+  font-weight: 600;
+  animation: pulse 2s infinite;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .replay-manager-modal {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+
+  .replay-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .replay-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .replay-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

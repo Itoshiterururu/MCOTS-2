@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: auth-service
+  data:
+    mongodb:
+      host: ${MONGODB_HOST:localhost}
+      port: ${MONGODB_PORT:27017}
+      database: ${MONGODB_DB_NAME:military_simulation}
+      auto-index-creation: true
+
+server:
+  port: ${SERVER_PORT:8081}
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+logging:
+  level:
+    uaigroup.authservice: DEBUG

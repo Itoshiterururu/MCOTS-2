@@ -1,0 +1,40 @@
+/* Global styles only */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #2d2d3a;
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  --left-sidebar-width: 250px;
+  --right-sidebar-width: 250px;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Стилі для центрального контейнера карти */
+.map-wrapper {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove all component specific styles as they are now in their respective files:
+- src/styles/components/Map.css
+- src/styles/components/Sidebar.css
+- src/styles/components/RightSidebar.css
+*/
+
+
+

@@ -1,0 +1,266 @@
+/* Field of Fire Configuration Styles */
+
+.field-of-fire-config {
+  background: #1e1e2e;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.config-header {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #3d3d4a;
+  padding-bottom: 12px;
+}
+
+.config-header h3 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 18px;
+}
+
+.config-header p {
+  margin: 0;
+  color: #888;
+  font-size: 13px;
+}
+
+.config-content {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+/* Visual Diagram */
+.fire-sector-diagram {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.sector-info {
+  font-size: 12px;
+  color: #aaa;
+  text-align: center;
+  padding: 4px 8px;
+  background: #2d2d3a;
+  border-radius: 4px;
+}
+
+/* Form Controls */
+.config-controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.form-group input[type="number"],
+.form-group input[type="text"],
+.form-group select {
+  padding: 8px 10px;
+  background: #2d2d3a;
+  border: 1px solid #3d3d4a;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.form-group input[type="number"]:focus,
+.form-group input[type="text"]:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4a9eff;
+}
+
+.form-group input[type="range"] {
+  width: 100%;
+  height: 6px;
+  background: #3d3d4a;
+  outline: none;
+  border-radius: 3px;
+}
+
+.form-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #4a9eff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.form-group input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #4a9eff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Actions */
+.config-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #3d3d4a;
+  margin-bottom: 16px;
+}
+
+.btn-save {
+  padding: 10px 20px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-save:hover {
+  background: #43a047;
+  transform: translateY(-1px);
+}
+
+.btn-clear {
+  padding: 10px 20px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-clear:hover {
+  background: #da190b;
+  transform: translateY(-1px);
+}
+
+.btn-cancel {
+  padding: 10px 20px;
+  background: #616161;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-left: auto;
+}
+
+.btn-cancel:hover {
+  background: #757575;
+}
+
+/* Help Section */
+.config-help {
+  background: #252535;
+  padding: 16px;
+  border-radius: 6px;
+  border-left: 4px solid #4a9eff;
+}
+
+.config-help h4 {
+  margin: 0 0 12px 0;
+  color: #4a9eff;
+  font-size: 14px;
+}
+
+.config-help ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #aaa;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.config-help li {
+  margin-bottom: 4px;
+}
+
+/* Fire Mission Popup */
+.fire-mission-popup {
+  font-size: 12px;
+}
+
+.fire-mission-popup h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.fire-mission-popup div {
+  margin: 4px 0;
+}
+
+.fire-mission-popup strong {
+  color: #666;
+  margin-right: 4px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .config-content {
+    flex-direction: column;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .config-actions {
+    flex-direction: column;
+  }
+
+  .btn-cancel {
+    margin-left: 0;
+  }
+}

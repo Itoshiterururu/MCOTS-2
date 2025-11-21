@@ -1,0 +1,692 @@
+/* Account Page Styles */
+
+.account-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-modal {
+  background: #1e1e2e;
+  border-radius: 12px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: #2d2d3a;
+  border-bottom: 1px solid #3d3d4a;
+}
+
+.account-header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+}
+
+.account-header .close-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0 8px;
+  line-height: 1;
+}
+
+.account-header .close-btn:hover {
+  color: #fff;
+}
+
+/* Alerts */
+.alert {
+  padding: 12px 24px;
+  font-size: 14px;
+  border-left: 4px solid;
+}
+
+.alert-error {
+  background: #2d1f1f;
+  border-color: #f44336;
+  color: #ff8a80;
+}
+
+.alert-success {
+  background: #1f2d1f;
+  border-color: #4caf50;
+  color: #b9f6ca;
+}
+
+/* Tabs */
+.account-tabs {
+  display: flex;
+  background: #252535;
+  border-bottom: 1px solid #3d3d4a;
+}
+
+.account-tabs button {
+  flex: 1;
+  padding: 14px 20px;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.account-tabs button:hover {
+  color: #ccc;
+  background: #2d2d3a;
+}
+
+.account-tabs button.active {
+  color: #4a9eff;
+  border-bottom-color: #4a9eff;
+  background: #2d2d3a;
+}
+
+/* Content */
+.account-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.loading {
+  text-align: center;
+  color: #888;
+  padding: 40px;
+}
+
+/* Profile Tab */
+.profile-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-avatar {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a9eff, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-row label {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 15px;
+  color: #fff;
+  background: #2d2d3a;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #3d3d4a;
+}
+
+.info-value.id {
+  font-family: monospace;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.info-value.editable {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.2s;
+}
+
+.info-value.editable:hover {
+  border-color: #4a9eff;
+}
+
+.edit-icon {
+  opacity: 0.6;
+  font-size: 14px;
+}
+
+.info-value.editable:hover .edit-icon {
+  opacity: 1;
+}
+
+/* Badges */
+.role-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.role-badge.admin {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.role-badge.operator {
+  background: #4a9eff;
+  color: #fff;
+}
+
+.role-badge.viewer {
+  background: #616161;
+  color: #ddd;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #2e7d32;
+  color: #fff;
+}
+
+.status-badge.disabled {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* Email Form */
+.email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.email-form input {
+  padding: 10px;
+  background: #1e1e2e;
+  border: 1px solid #4a9eff;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-save {
+  padding: 8px 16px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-save:hover {
+  background: #43a047;
+}
+
+.btn-cancel {
+  padding: 8px 16px;
+  background: #616161;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-cancel:hover {
+  background: #757575;
+}
+
+/* Security Tab */
+.security-tab h3 {
+  margin: 0 0 20px 0;
+  color: #fff;
+  font-size: 18px;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  background: #2d2d3a;
+  border: 1px solid #3d3d4a;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4a9eff;
+}
+
+.btn-primary {
+  padding: 12px 24px;
+  background: #4a9eff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #3a8eef;
+}
+
+.security-info {
+  background: #252535;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #ffa726;
+}
+
+.security-info h4 {
+  margin: 0 0 12px 0;
+  color: #ffa726;
+  font-size: 14px;
+}
+
+.security-info ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Settings Tab */
+.settings-tab h3 {
+  margin: 0 0 20px 0;
+  color: #fff;
+  font-size: 18px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #252535;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.setting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.setting-info label {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.setting-description {
+  font-size: 12px;
+  color: #888;
+}
+
+.setting-item select {
+  padding: 8px 12px;
+  background: #1e1e2e;
+  border: 1px solid #3d3d4a;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3d3d4a;
+  transition: 0.3s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4a9eff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.settings-actions {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #3d3d4a;
+}
+
+.btn-reset {
+  padding: 10px 20px;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-reset:hover {
+  background: #c62828;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .account-modal {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+
+  .setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* History Tab */
+.history-tab {
+  padding: 1.5rem;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.history-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.btn-refresh {
+  background: rgba(102, 126, 234, 0.2);
+  border: 2px solid #667eea;
+  color: #667eea;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-refresh:hover {
+  background: rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+}
+
+.empty-history {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.empty-history p {
+  margin: 0.5rem 0;
+}
+
+.empty-history .hint {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.battle-record {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.battle-record:hover {
+  border-color: rgba(102, 126, 234, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.battle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.battle-date {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.btn-delete-history {
+  background: transparent;
+  border: none;
+  color: #f44336;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-delete-history:hover {
+  transform: scale(1.2);
+}
+
+.battle-outcome {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.battle-outcome.blue_victory {
+  background: rgba(33, 150, 243, 0.2);
+  border: 2px solid #2196f3;
+  color: #64b5f6;
+}
+
+.battle-outcome.red_victory {
+  background: rgba(244, 67, 54, 0.2);
+  border: 2px solid #f44336;
+  color: #e57373;
+}
+
+.battle-outcome.blue_advantage {
+  background: rgba(33, 150, 243, 0.1);
+  border: 2px solid rgba(33, 150, 243, 0.5);
+  color: #90caf9;
+}
+
+.battle-outcome.red_advantage {
+  background: rgba(244, 67, 54, 0.1);
+  border: 2px solid rgba(244, 67, 54, 0.5);
+  color: #ef9a9a;
+}
+
+.battle-outcome.ongoing {
+  background: rgba(255, 152, 0, 0.1);
+  border: 2px solid #ff9800;
+  color: #ffb74d;
+}
+
+.battle-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.force-summary {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid;
+}
+
+.force-summary.blue {
+  border-left-color: #2196f3;
+}
+
+.force-summary.red {
+  border-left-color: #f44336;
+}
+
+.force-summary h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-row span:first-child {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.stat-row span:last-child {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.stat-row .casualties {
+  color: #f44336;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .battle-stats {
+    grid-template-columns: 1fr;
+  }
+}

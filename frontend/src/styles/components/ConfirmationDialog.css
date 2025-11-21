@@ -1,0 +1,105 @@
+.confirmation-dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.confirmation-dialog {
+  background-color: #1a2235;
+  border: 1px solid #3a465c;
+  border-radius: 6px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  color: #e0e0e0;
+  animation: dialog-appear 0.3s ease-out;
+}
+
+@keyframes dialog-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.confirmation-dialog-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #f0f0f0;
+}
+
+.confirmation-dialog-title svg {
+  margin-right: 10px;
+  color: #ff5733;
+}
+
+.confirmation-dialog-content {
+  margin-bottom: 20px;
+  border-left: 3px solid #3a465c;
+  padding-left: 15px;
+}
+
+.confirmation-dialog-content p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #d0d0d0;
+}
+
+.confirmation-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.confirmation-dialog-button {
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+}
+
+.confirmation-dialog-button.cancel {
+  background-color: transparent;
+  border-color: #5c6a88;
+  color: #b0b0b0;
+}
+
+.confirmation-dialog-button.cancel:hover {
+  background-color: rgba(92, 106, 136, 0.2);
+  color: #ffffff;
+}
+
+.confirmation-dialog-button.confirm {
+  background-color: #c92a2a;
+  border-color: #c92a2a;
+  color: white;
+}
+
+.confirmation-dialog-button.confirm:hover {
+  background-color: #a61b1b;
+  border-color: #a61b1b;
+  box-shadow: 0 0 8px rgba(201, 42, 42, 0.5);
+}

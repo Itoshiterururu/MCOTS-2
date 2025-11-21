@@ -1,0 +1,22 @@
+/**
+ * Enum representing different unit types in the application
+ */
+const UnitType = {
+  INFANTRY: 'INFANTRY',
+  MECHANIZED: 'MECHANIZED',
+  TANKS: 'TANKS',
+  COMMUNICATIONS: 'COMMUNICATIONS',
+  ANTI_TANK: 'ANTI_TANK',
+  RECONNAISSANCE: 'RECONNAISSANCE',
+  UAV: 'UAV',
+  AIR_DEFENSE: 'AIR_DEFENSE',
+  HOWITZER: 'HOWITZER',
+  MORTAR: 'MORTAR',
+  ENGINEER: 'ENGINEER',
+  REPAIR: 'REPAIR',
+  SUPPLY: 'SUPPLY',
+  MEDICAL: 'MEDICAL',
+  LOGISTICS: 'LOGISTICS'
+};
+
+export default UnitType;

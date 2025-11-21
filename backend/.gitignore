@@ -1,0 +1,8 @@
+# Battle service
+./battle-service/__pycache__/
+./battle-service/venv/
+./battle-service/*.img
+
+# Validation Gateway
+./validation-gateway/__pycache__/
+./validation-gateway/venv/

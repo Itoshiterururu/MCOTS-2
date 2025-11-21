@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: map-service
+  data:
+    mongodb:
+      host: ${MONGODB_HOST:localhost}
+      port: ${MONGODB_PORT:27017}
+      database: military_simulation
+      auto-index-creation: true
+  websocket:
+    path: /ws
+server:
+  port: ${SERVER_PORT:8080}
+
+jwt:
+  secret: ${JWT_SECRET:myVerySecretKeyForMCOTSAuthService123456789}
+
+logging:
+  level:
+    org.springframework.data.mongodb: DEBUG

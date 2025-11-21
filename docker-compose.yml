@@ -1,0 +1,105 @@
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_MAP_SERVICE_PORT: ${MAP_SERVICE_PORT:-8080}
+        VITE_INTELLIGENCE_SERVICE_PORT: ${INTELLIGENCE_SERVICE_PORT:-8084}
+        VITE_AUTH_SERVICE_PORT: ${AUTH_SERVICE_PORT:-8081}
+    image: mcots/frontend:latest
+    container_name: frontend
+    ports:
+      - "${FRONTEND_PORT:-5173}:${FRONTEND_PORT:-5173}"
+    environment:
+      - PORT=${FRONTEND_PORT:-5173}
+    networks:
+      - mcots-network
+    depends_on:
+      - auth-service
+      - map-service
+      - intelligence-service
+      - mongodb
+    restart: always
+
+  auth-service:
+    build:
+      context: ./backend/auth-service
+      dockerfile: Dockerfile
+    image: mcots/backend/auth-service:latest
+    container_name: auth-service
+    ports:
+      - "${AUTH_SERVICE_PORT:-8081}:8081"
+    environment:
+      - MONGODB_HOST=mcots-mongodb
+      - MONGODB_PORT=${MONGODB_PORT:-27017}
+      - MONGODB_DB_NAME=${MONGODB_DB_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - SERVER_PORT=8081
+    depends_on:
+      - mongodb
+    networks:
+      - mcots-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/api/v1/auth/test"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  map-service:
+    build:
+      context: ./backend/map-service
+      dockerfile: Dockerfile
+    image: mcots/backend/map-service:latest
+    container_name: map-service
+    ports:
+      - "${MAP_SERVICE_PORT:-8080}:${MAP_SERVICE_PORT:-8080}"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mcots-mongodb:${MONGODB_PORT:-27017}/${MONGODB_DB_NAME}
+      - SERVER_PORT=${MAP_SERVICE_PORT:-8080}
+      - FRONTEND_PORT=${FRONTEND_PORT:-5173}
+      - INTELLIGENCE_SERVICE_PORT=${INTELLIGENCE_SERVICE_PORT:-8084}
+      - MONGODB_PORT=${MONGODB_PORT:-27017}
+      - MONGODB_HOST=mcots-mongodb
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      - mongodb
+      - auth-service
+    networks:
+      - mcots-network
+
+  intelligence-service:
+    build:
+      context: ./backend/intelligence-service
+      dockerfile: Dockerfile
+    image: mcots/backend/intelligence-service:latest
+    container_name: intelligence-service
+    ports:
+      - "${INTELLIGENCE_SERVICE_PORT:-8084}:8084"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    networks:
+      - mcots-network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mcots-mongodb
+    ports:
+      - "${MONGODB_PORT:-27017}:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGODB_DB_NAME}
+    networks:
+      - mcots-network
+
+volumes:
+  mongodb_data:
+    name: mongodb_data
+
+networks:
+  mcots-network:
+    driver: bridge
+    name: mcots-network
