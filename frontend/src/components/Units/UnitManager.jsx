@@ -520,100 +520,104 @@ export const UnitRenderer = React.memo(({
 
       {/* Display existing units */}
       {React.useMemo(() => units.map(unit => {
-        if (unit && unit.position) {
-          const position = [unit.position.latitude, unit.position.longitude];
-          const unitConfig = UnitConfigs.find(u => u.type === unit.unitType && u.faction === unit.faction);
-          if (!unitConfig) {
-            console.warn(`Unit config not found for type: ${unit.unitType}, faction: ${unit.faction}`);
-            return null;
-          }
-
-          const unitRank = unit.unitRank || 'PLATOON';
-          const isDestroyed = unit.status === 'DESTROYED' || (unit.personnel !== undefined && unit.personnel <= 0);
-          const customIcon = createUnitIcon(unitConfig, unitRank, isDestroyed);
-
-          return (
-            <Marker
-              key={unit.id}
-              position={position}
-              icon={customIcon}
-              draggable={!isCropping && !isDestroyed} // Destroyed units can't be dragged
-              opacity={isDestroyed ? 0.7 : 1.0}
-              eventHandlers={{
-                click: (e) => {
-                  // Left-click just shows popup, prevent opening edit form
-                  e.originalEvent.stopPropagation();
-                },
-                contextmenu: (e) => {
-                  // Right-click opens edit form
-                  e.originalEvent.preventDefault();
-                  onUnitClick(unit);
-                },
-                dragstart: (e) => {
-                  // Mark this unit as currently being dragged
-                  isDraggingRef.current[unit.id] = true;
-
-                  // Remove any transition during manual drag
-                  const element = e.target.getElement();
-                  if (element) {
-                    element.style.transition = 'none';
-                  }
-
-                  onMarkerDrag(e, unit);
-                },
-                dragend: (e) => {
-                  // Unit is no longer being dragged
-                  isDraggingRef.current[unit.id] = false;
-
-                  // Update the stored position
-                  const newPos = e.target.getLatLng();
-                  previousPositionsRef.current[unit.id] = [newPos.lat, newPos.lng];
-
-                  onMarkerDragEnd(e, unit);
-                },
-                add: (e) => {
-                  // Store reference to the marker for animations
-                  markerRefs.current[unit.id] = e.target;
-                  // Initialize position tracking
-                  previousPositionsRef.current[unit.id] = position;
-                }
-              }}
-            >
-              <Popup>
-                <div style={{ minWidth: '200px' }}>
-                  <h3 style={{ margin: '0 0 8px 0', color: isDestroyed ? '#e74c3c' : '#333' }}>
-                    {unitConfig.name} ({unitRank})
-                    {isDestroyed && <span style={{ marginLeft: '8px', fontSize: '14px' }}>💀</span>}
-                  </h3>
-                  {isDestroyed && (
-                    <div style={{
-                      padding: '6px 10px',
-                      background: 'rgba(231, 76, 60, 0.2)',
-                      border: '1px solid #e74c3c',
-                      borderRadius: '4px',
-                      color: '#e74c3c',
-                      fontWeight: 'bold',
-                      fontSize: '12px',
-                      marginBottom: '8px',
-                      textAlign: 'center'
-                    }}>
-                      ⚠️ UNIT DESTROYED
-                    </div>
-                  )}
-                  <div style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>
-                    <div><strong>Type:</strong> {unit.unitType}</div>
-                    <div><strong>Faction:</strong> {unit.faction === Faction.BLUE_FORCE ? '🔵 Blue Force' : '🔴 Red Force'}</div>
-                    <div><strong>Personnel:</strong> {unit.personnel || 0}</div>
-                    <div><strong>Vehicles:</strong> {unit.vehicles || 0}</div>
-                    <div><strong>Firepower:</strong> {unit.firepower || 0}</div>
-                  </div>
-                  {!isDestroyed && <UnitHealthBar unit={unit} />}
-                </div>
-              </Popup>
-            </Marker>
-          );
+        if (!unit || !unit.id || !unit.position ||
+            typeof unit.position.latitude !== 'number' ||
+            typeof unit.position.longitude !== 'number' ||
+            !unit.unitType || !unit.faction) {
+          return null;
         }
-        return null;
+
+        const position = [unit.position.latitude, unit.position.longitude];
+        const unitConfig = UnitConfigs.find(u => u.type === unit.unitType && u.faction === unit.faction);
+        if (!unitConfig) {
+          console.warn(`Unit config not found for type: ${unit.unitType}, faction: ${unit.faction}`);
+          return null;
+        }
+
+        const unitRank = unit.unitRank || 'PLATOON';
+        const isDestroyed = unit.status === 'DESTROYED' || (unit.personnel !== undefined && unit.personnel <= 0);
+        const customIcon = createUnitIcon(unitConfig, unitRank, isDestroyed);
+
+        return (
+          <Marker
+            key={unit.id}
+            position={position}
+            icon={customIcon}
+            draggable={!isCropping && !isDestroyed} // Destroyed units can't be dragged
+            opacity={isDestroyed ? 0.7 : 1.0}
+            eventHandlers={{
+              click: (e) => {
+                // Left-click just shows popup, prevent opening edit form
+                e.originalEvent.stopPropagation();
+              },
+              contextmenu: (e) => {
+                // Right-click opens edit form
+                e.originalEvent.preventDefault();
+                onUnitClick(unit);
+              },
+              dragstart: (e) => {
+                // Mark this unit as currently being dragged
+                isDraggingRef.current[unit.id] = true;
+
+                // Remove any transition during manual drag
+                const element = e.target.getElement();
+                if (element) {
+                  element.style.transition = 'none';
+                }
+
+                onMarkerDrag(e, unit);
+              },
+              dragend: (e) => {
+                // Unit is no longer being dragged
+                isDraggingRef.current[unit.id] = false;
+
+                // Update the stored position
+                const newPos = e.target.getLatLng();
+                previousPositionsRef.current[unit.id] = [newPos.lat, newPos.lng];
+
+                onMarkerDragEnd(e, unit);
+              },
+              add: (e) => {
+                // Store reference to the marker for animations
+                markerRefs.current[unit.id] = e.target;
+                // Initialize position tracking
+                previousPositionsRef.current[unit.id] = position;
+              }
+            }}
+          >
+            <Popup>
+              <div style={{ minWidth: '200px' }}>
+                <h3 style={{ margin: '0 0 8px 0', color: isDestroyed ? '#e74c3c' : '#333' }}>
+                  {unitConfig.name} ({unitRank})
+                  {isDestroyed && <span style={{ marginLeft: '8px', fontSize: '14px' }}>💀</span>}
+                </h3>
+                {isDestroyed && (
+                  <div style={{
+                    padding: '6px 10px',
+                    background: 'rgba(231, 76, 60, 0.2)',
+                    border: '1px solid #e74c3c',
+                    borderRadius: '4px',
+                    color: '#e74c3c',
+                    fontWeight: 'bold',
+                    fontSize: '12px',
+                    marginBottom: '8px',
+                    textAlign: 'center'
+                  }}>
+                    ⚠️ UNIT DESTROYED
+                  </div>
+                )}
+                <div style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>
+                  <div><strong>Type:</strong> {unit.unitType || 'Unknown'}</div>
+                  <div><strong>Faction:</strong> {unit.faction === Faction.BLUE_FORCE ? '🔵 Blue Force' : unit.faction === 'RED_FORCE' ? '🔴 Red Force' : '⚪ Unknown'}</div>
+                  <div><strong>Personnel:</strong> {unit.personnel !== undefined ? unit.personnel : 0}</div>
+                  <div><strong>Vehicles:</strong> {unit.vehicles !== undefined ? unit.vehicles : 0}</div>
+                  <div><strong>Firepower:</strong> {unit.firepower !== undefined ? unit.firepower : 0}</div>
+                </div>
+                {!isDestroyed && unit.unitRank && <UnitHealthBar unit={unit} />}
+              </div>
+            </Popup>
+          </Marker>
+        );
       }), [units, isCropping, onUnitClick, onMarkerDrag, onMarkerDragEnd])}
     </>
   );

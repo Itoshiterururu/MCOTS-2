@@ -2,13 +2,19 @@ import React from 'react';
 import './UnitHealthBar.css';
 
 const UnitHealthBar = ({ unit }) => {
-  if (!unit) return null;
+  if (!unit || !unit.unitRank) return null;
 
   const getHealthPercentage = () => {
-    // Calculate health based on personnel and morale
-    const personnelHealth = (unit.personnel || 0) / getMaxPersonnel(unit.unitRank);
-    const moraleHealth = (unit.morale || 100) / 100;
-    return ((personnelHealth + moraleHealth) / 2) * 100;
+    try {
+      // Calculate health based on personnel and morale
+      const maxPersonnel = getMaxPersonnel(unit.unitRank);
+      const personnelHealth = (unit.personnel || 0) / maxPersonnel;
+      const moraleHealth = (unit.morale || 100) / 100;
+      return ((personnelHealth + moraleHealth) / 2) * 100;
+    } catch (error) {
+      console.error('Error calculating health percentage:', error);
+      return 50; // Default to 50% on error
+    }
   };
 
   const getMaxPersonnel = (rank) => {
@@ -56,10 +62,10 @@ const UnitHealthBar = ({ unit }) => {
         <span className="health-icon">{statusIcon}</span>
         <span className="health-percentage">{Math.round(healthPercentage)}%</span>
       </div>
-      {(unit.morale < 50 || unit.supplyLevel < 50) && (
+      {((unit.morale !== undefined && unit.morale < 50) || (unit.supplyLevel !== undefined && unit.supplyLevel < 50)) && (
         <div className="status-warnings">
-          {unit.morale < 50 && <span className="warning-badge morale">Low Morale</span>}
-          {unit.supplyLevel < 50 && <span className="warning-badge supply">Low Supply</span>}
+          {unit.morale !== undefined && unit.morale < 50 && <span className="warning-badge morale">Low Morale</span>}
+          {unit.supplyLevel !== undefined && unit.supplyLevel < 50 && <span className="warning-badge supply">Low Supply</span>}
         </div>
       )}
     </div>

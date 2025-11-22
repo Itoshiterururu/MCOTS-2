@@ -100,14 +100,23 @@ function App() {
     try {
       const { getAllUnits } = await import('./services/api');
       const result = await getAllUnits();
-      
-      if (result.success) {
-        setUnits(result.data);
+
+      if (result.success && Array.isArray(result.data)) {
+        // Filter out any invalid units and ensure required properties exist
+        const validUnits = result.data.filter(unit =>
+          unit &&
+          unit.id &&
+          unit.position &&
+          typeof unit.position.latitude === 'number' &&
+          typeof unit.position.longitude === 'number'
+        );
+        setUnits(validUnits);
       } else {
         console.error('Failed to fetch units:', result.error);
       }
     } catch (error) {
       console.error('Failed to fetch units:', error);
+      // Don't update units state on error to prevent rendering issues
     }
   };
 

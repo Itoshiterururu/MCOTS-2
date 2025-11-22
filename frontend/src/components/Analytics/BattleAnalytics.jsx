@@ -23,11 +23,11 @@ const BattleAnalytics = ({ units, isVisible, onClose }) => {
 
   // Calculate battle statistics
   const stats = React.useMemo(() => {
-    const blueForce = units.filter(u => u.faction === 'BLUE_FORCE');
-    const redForce = units.filter(u => u.faction === 'RED_FORCE');
+    const blueForce = units.filter(u => u && u.faction === 'BLUE_FORCE');
+    const redForce = units.filter(u => u && u.faction === 'RED_FORCE');
 
-    const blueDestroyed = blueForce.filter(u => u.status === 'DESTROYED' || u.personnel <= 0);
-    const redDestroyed = redForce.filter(u => u.status === 'DESTROYED' || u.personnel <= 0);
+    const blueDestroyed = blueForce.filter(u => u && (u.status === 'DESTROYED' || (u.personnel !== undefined && u.personnel <= 0)));
+    const redDestroyed = redForce.filter(u => u && (u.status === 'DESTROYED' || (u.personnel !== undefined && u.personnel <= 0)));
 
     const blueTotalPersonnel = blueForce.reduce((sum, u) => sum + (u.personnel || 0), 0);
     const redTotalPersonnel = redForce.reduce((sum, u) => sum + (u.personnel || 0), 0);

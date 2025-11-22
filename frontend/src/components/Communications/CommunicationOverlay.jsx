@@ -9,7 +9,7 @@ const CommunicationOverlay = ({ units, showOverlay = true }) => {
 
   // Filter only COMMUNICATIONS units
   const commsUnits = units.filter(unit =>
-    unit.unitType === 'COMMUNICATIONS' || unit.type === 'COMMUNICATIONS'
+    unit && unit.position && (unit.unitType === 'COMMUNICATIONS' || unit.type === 'COMMUNICATIONS')
   );
 
   if (commsUnits.length === 0) return null;
@@ -17,6 +17,10 @@ const CommunicationOverlay = ({ units, showOverlay = true }) => {
   return (
     <>
       {commsUnits.map(unit => {
+        if (!unit || !unit.position || !unit.position.latitude || !unit.position.longitude) {
+          return null;
+        }
+
         // Range is in km, Leaflet needs meters
         const radiusInMeters = (unit.range || 8) * 1000;
 

@@ -14,8 +14,8 @@ const BattleStatsDashboard = ({ units, isVisible, onClose }) => {
   useEffect(() => {
     if (!units || units.length === 0) return;
 
-    const blueUnits = units.filter(u => u.faction === 'BLUE_FORCE');
-    const redUnits = units.filter(u => u.faction === 'RED_FORCE');
+    const blueUnits = units.filter(u => u && u.faction === 'BLUE_FORCE');
+    const redUnits = units.filter(u => u && u.faction === 'RED_FORCE');
 
     const calculateStats = (unitsList, faction) => {
       return {
@@ -58,10 +58,10 @@ const BattleStatsDashboard = ({ units, isVisible, onClose }) => {
       }));
 
       // Check for significant events
-      if (blueCasualties > 0 && blueCasualties !== prev.blueForce.casualties) {
+      if (blueCasualties > 0 && stats.blueForce && blueCasualties !== stats.blueForce.casualties) {
         addBattleEvent(`Blue Force casualties: ${blueCasualties}`, 'blue-damage');
       }
-      if (redCasualties > 0 && redCasualties !== prev.redForce.casualties) {
+      if (redCasualties > 0 && stats.redForce && redCasualties !== stats.redForce.casualties) {
         addBattleEvent(`Red Force casualties: ${redCasualties}`, 'red-damage');
       }
     }

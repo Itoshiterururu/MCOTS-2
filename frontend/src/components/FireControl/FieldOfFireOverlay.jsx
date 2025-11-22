@@ -93,7 +93,7 @@ const FieldOfFireOverlay = ({ units }) => {
 
   return (
     <>
-      {units.filter(u => u.fieldOfFire && u.fieldOfFire.active).map(unit => {
+      {units.filter(u => u && u.fieldOfFire && u.fieldOfFire.active).map(unit => {
         const sectorPoints = calculateSectorPoints(unit);
         const centerLine = calculateCenterLine(unit);
         const color = getColor(unit);
